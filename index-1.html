@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sparkle Cleaning Service – Professional, trusted, and thorough cleaning for homes and offices in your neighborhood. Book deep cleaning, post-construction, move-in, laundry, and more." />
+  <meta name="keywords" content="cleaning service, deep cleaning, post construction cleaning, move in cleaning, laundry service, Sparkle Cleaning" />
+  <meta name="author" content="Sparkle Cleaning Service" />
+  <meta property="og:title" content="Sparkle Cleaning Service – Let's Make It Sparkle" />
+  <meta property="og:description" content="Professional cleaning you can trust for a home you'll love coming back to." />
+  <meta property="og:type" content="website" />
+  <title>Sparkle Cleaning Service – Let's Make It Sparkle</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #0a1f5c;
+      --navy-mid: #1a3080;
+      --blue: #1e50d4;
+      --sky: #3d7ef5;
+      --white: #ffffff;
+      --off-white: #f4f7ff;
+      --light-blue: #e8effe;
+      --text: #1a1a2e;
+      --muted: #5a6a8a;
+      --border: #dce5f5;
+      --wa-green: #25D366;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(10,31,92,0.10);
+      --shadow-md: 0 8px 40px rgba(10,31,92,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    img { max-width: 100%; display: block; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(10,31,92,0.07);
+    }
+
+    .nav-inner {
+      max-width: 1140px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 68px;
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--navy);
+    }
+
+    .logo-icon {
+      width: 38px; height: 38px; background: var(--navy);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-icon svg { width: 22px; height: 22px; fill: white; }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      padding: 8px 16px; border-radius: 8px;
+      font-weight: 500; font-size: 0.9rem;
+      color: var(--muted); transition: all 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--navy); background: var(--light-blue);
+    }
+
+    .nav-cta {
+      background: var(--navy); color: var(--white) !important;
+      padding: 9px 20px !important; border-radius: 8px !important;
+    }
+
+    .nav-cta:hover { background: var(--blue) !important; color: white !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--navy); border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── DRAWER OVERLAY ── */
+    .drawer-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(10, 31, 92, 0.45);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.open { display: block; opacity: 1; }
+
+    /* ── SIDE DRAWER ── */
+    .drawer {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 1001;
+      width: 280px;
+      background: var(--white);
+      box-shadow: -8px 0 40px rgba(10,31,92,0.18);
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .drawer.open { transform: translateX(0); }
+
+    .drawer-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--off-white);
+    }
+
+    .drawer-close {
+      width: 36px; height: 36px;
+      border-radius: 8px; border: 1px solid var(--border);
+      background: white; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--navy);
+      transition: all 0.2s;
+    }
+
+    .drawer-close:hover { background: var(--light-blue); }
+
+    .drawer-nav {
+      flex: 1; display: flex; flex-direction: column;
+      padding: 20px 16px; gap: 4px; list-style: none;
+    }
+
+    .drawer-nav li a {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; border-radius: 10px;
+      font-weight: 500; font-size: 1rem;
+      color: var(--muted); transition: all 0.2s;
+    }
+
+    .drawer-nav li a:hover, .drawer-nav li a.active {
+      color: var(--navy); background: var(--light-blue);
+    }
+
+    .drawer-nav li a .nav-icon { font-size: 1.1rem; }
+
+    .drawer-footer {
+      padding: 20px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .drawer-footer .btn-wa {
+      width: 100%; justify-content: center;
+      padding: 14px; border-radius: 10px;
+      font-size: 0.95rem;
+    }
+
+    .drawer-book {
+      width: 100%; padding: 13px;
+      background: var(--navy); color: white;
+      border: none; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: all 0.22s;
+      margin-bottom: 10px;
+    }
+
+    .drawer-book:hover { background: var(--blue); }
+
+    /* ── PAGES ── */
+    .page { display: none; padding-top: 68px; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--blue) 100%);
+      color: white;
+      padding: 90px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -40px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero-inner {
+      max-width: 1140px; margin: auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+      margin-bottom: 20px;
+    }
+
+    .hero-badge span { color: #7eb8ff; }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.15; margin-bottom: 20px;
+    }
+
+    .hero h1 em { color: #7eb8ff; font-style: normal; }
+
+    .hero p {
+      font-size: 1.05rem; color: rgba(255,255,255,0.78);
+      line-height: 1.7; max-width: 460px; margin-bottom: 36px;
+    }
+
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; transition: all 0.22s;
+      border: none; font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-white {
+      background: white; color: var(--navy);
+    }
+    .btn-white:hover { background: var(--off-white); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+    .btn-outline {
+      background: transparent; color: white;
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    .btn-primary {
+      background: var(--navy); color: white;
+    }
+    .btn-primary:hover { background: var(--blue); transform: translateY(-1px); box-shadow: var(--shadow); }
+
+    .btn-wa {
+      background: var(--wa-green); color: white;
+    }
+    .btn-wa:hover { background: #1eba58; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,211,102,0.3); }
+
+    .hero-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card-title {
+      font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: #7eb8ff; margin-bottom: 20px;
+    }
+
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 18px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; color: white;
+    }
+
+    .stat-label {
+      font-size: 0.78rem; color: rgba(255,255,255,0.65);
+      margin-top: 4px;
+    }
+
+    .hero-service-pills {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: 0.78rem; color: rgba(255,255,255,0.85);
+    }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: var(--light-blue);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+
+    .trust-inner {
+      max-width: 1140px; margin: auto;
+      display: flex; gap: 36px; align-items: center; flex-wrap: wrap; justify-content: center;
+    }
+
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; font-weight: 500; color: var(--navy);
+    }
+
+    .trust-icon { font-size: 1.1rem; }
+
+    /* ── SECTION ── */
+    section { padding: 80px 24px; }
+
+    .container { max-width: 1140px; margin: auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue);
+      background: var(--light-blue); padding: 5px 14px;
+      border-radius: 100px; margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      color: var(--navy); margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 1rem; color: var(--muted);
+      line-height: 1.7; max-width: 560px;
+    }
+
+    .section-head { margin-bottom: 50px; }
+
+    /* ── SERVICE CARDS ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: all 0.25s;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      border-color: var(--sky);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      background: var(--light-blue);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.4rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem; color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 0.88rem; color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── WHY US ── */
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    }
+
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+
+    .why-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+
+    .why-num {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      background: var(--navy); color: white;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 700;
+    }
+
+    .why-item h4 { font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
+    .why-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    .why-visual {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      border-radius: 20px;
+      padding: 40px;
+      color: white;
+    }
+
+    .why-visual-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; margin-bottom: 24px;
+    }
+
+    .highlight-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+
+    .highlight-row span { font-size: 0.88rem; }
+    .check { color: #7eb8ff; font-size: 1.1rem; }
+
+    /* ── PACKAGE BANNER ── */
+    .package-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      border-radius: 20px;
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      color: white;
+    }
+
+    .package-banner h3 {
+      font-size: 1.5rem; margin-bottom: 8px;
+    }
+
+    .package-banner p {
+      font-size: 0.9rem; color: rgba(255,255,255,0.75);
+    }
+
+    /* ── ABOUT PAGE ── */
+    .about-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: white; padding: 70px 24px;
+    }
+
+    .about-hero-inner { max-width: 1140px; margin: auto; }
+
+    .about-hero h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+    .about-hero p { font-size: 1rem; color: rgba(255,255,255,0.8); max-width: 560px; line-height: 1.7; }
+
+    .values-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .value-card {
+      background: var(--light-blue);
+      border-radius: 14px; padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .value-card h4 { color: var(--navy); margin-bottom: 8px; font-size: 1rem; }
+    .value-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .value-emoji { font-size: 1.6rem; margin-bottom: 12px; }
+
+    .team-band {
+      background: var(--navy);
+      color: white; border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .team-band h3 { font-size: 1.4rem; margin-bottom: 10px; }
+    .team-band p { font-size: 0.9rem; color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto 24px; line-height: 1.7; }
+
+    /* ── CONTACT PAGE ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 50px; align-items: start;
+    }
+
+    .contact-info h3 { font-size: 1.3rem; color: var(--navy); margin-bottom: 6px; }
+    .contact-info p { font-size: 0.88rem; color: var(--muted); margin-bottom: 28px; line-height: 1.7; }
+
+    .contact-detail {
+      display: flex; gap: 14px; align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .contact-detail-icon {
+      width: 40px; height: 40px; background: var(--light-blue);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+
+    .contact-detail h5 { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
+    .contact-detail p { font-size: 0.9rem; color: var(--navy); font-weight: 600; margin: 0; }
+
+    .wa-card {
+      background: #f0fdf4;
+      border: 1.5px solid #bbf7d0;
+      border-radius: 14px; padding: 20px;
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 24px;
+    }
+
+    .wa-card .wa-icon {
+      width: 46px; height: 46px;
+      background: var(--wa-green); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+
+    .wa-card h5 { font-size: 0.88rem; color: #15803d; margin-bottom: 2px; }
+    .wa-card p { font-size: 0.82rem; color: #4ade80; }
+
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 24px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-group label {
+      display: block; font-size: 0.82rem;
+      font-weight: 600; color: var(--navy);
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px; font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text); background: var(--off-white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      background: white;
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      width: 100%; padding: 14px;
+      background: var(--navy); color: white;
+      border: none; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: all 0.22s;
+    }
+
+    .form-submit:hover { background: var(--blue); }
+
+    /* ── FLOATING WA ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 998;
+      width: 56px; height: 56px;
+      background: var(--wa-green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      font-size: 1.5rem;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      padding: 40px 24px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1140px; margin: auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+
+    .footer-brand .logo { color: white; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
+
+    .footer-col h5 { color: white; font-size: 0.85rem; font-weight: 700; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul li { font-size: 0.83rem; cursor: pointer; transition: color 0.2s; }
+    .footer-col ul li:hover { color: #7eb8ff; }
+
+    .footer-bottom {
+      max-width: 1140px; margin: auto;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; flex-wrap: wrap; gap: 8px;
+    }
+
+    .footer-bottom span { color: rgba(255,255,255,0.45); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px; background: var(--border);
+      max-width: 1140px; margin: 0 auto;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page.active .hero-content { animation: fadeUp 0.6s ease both; }
+    .page.active .hero-card { animation: fadeUp 0.6s 0.15s ease both; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      .hamburger { display: flex; }
+
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero-card { display: none; }
+
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+      .form-row { grid-template-columns: 1fr; }
+      .package-banner { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 56px 20px; }
+      .hero { padding: 60px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/2348114246335?text=Hello%20Sparkle%20Cleaning%2C%20I%20would%20like%20to%20book%20a%20cleaning%20service."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+      </div>
+      Sparkle
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+      <li><a href="#" onclick="showPage('services')" id="nav-services">Services</a></li>
+      <li><a href="#" onclick="showPage('about')" id="nav-about">About Us</a></li>
+      <li><a href="#" onclick="showPage('contact')" id="nav-contact" class="nav-cta">Book Now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<!-- SIDE DRAWER -->
+<div class="drawer" id="sideDrawer">
+  <div class="drawer-header">
+    <div class="logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+      Sparkle
+    </div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <ul class="drawer-nav">
+    <li><a href="#" onclick="showPage('home'); closeDrawer();" id="drawer-home" class="active"><span class="nav-icon">🏠</span> Home</a></li>
+    <li><a href="#" onclick="showPage('services'); closeDrawer();"><span class="nav-icon">✨</span> Services</a></li>
+    <li><a href="#" onclick="showPage('about'); closeDrawer();"><span class="nav-icon">👥</span> About Us</a></li>
+    <li><a href="#" onclick="showPage('contact'); closeDrawer();"><span class="nav-icon">📋</span> Contact</a></li>
+  </ul>
+  <div class="drawer-footer">
+    <button class="drawer-book" onclick="showPage('contact'); closeDrawer();">📅 Book a Cleaning</button>
+    <button class="btn btn-wa" style="width:100%; justify-content:center; padding:13px; border-radius:10px;" onclick="goWhatsApp()">💬 WhatsApp Us</button>
+  </div>
+</div>
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div class="page active" id="page-home">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">✦ <span>Nigeria's Trusted Cleaning Partner</span></div>
+        <h1>Let's Make It <em>Sparkle</em></h1>
+        <p>Professional cleaning you can trust — for a home you'll love coming back to. We bring care, precision, and safe products to every space we touch.</p>
+        <div class="hero-btns">
+          <button class="btn btn-white" onclick="showPage('contact')">📅 Book a Cleaning</button>
+          <button class="btn btn-outline" onclick="showPage('services')">View Services</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-title">✦ Our Promise</div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Homes Cleaned</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Service Types</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Safe Products</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">5★</div>
+            <div class="stat-label">Client Rating</div>
+          </div>
+        </div>
+        <div class="hero-service-pills">
+          <span class="pill">Deep Cleaning</span>
+          <span class="pill">Post Construction</span>
+          <span class="pill">Move In</span>
+          <span class="pill">Laundry</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-strip">
+    <div class="trust-inner">
+      <div class="trust-item"><span class="trust-icon">🛡️</span> Trusted & Reliable</div>
+      <div class="trust-item"><span class="trust-icon">🔍</span> Thorough & Detail Oriented</div>
+      <div class="trust-item"><span class="trust-icon">🌿</span> Safe Products For Your Home</div>
+      <div class="trust-item"><span class="trust-icon">📍</span> Serving Your Neighborhood</div>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <section style="background: var(--off-white);">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Our Services</span>
+        <h2 class="section-title">Everything We Offer</h2>
+        <p class="section-sub">From routine upkeep to post-construction overhauls, we have the right service for every need.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>Deep Cleaning</h3>
+          <p>A thorough top-to-bottom clean of your entire space — perfect for seasonal refreshes or long-overdue cleans.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3>Post Construction Cleaning</h3>
+          <p>Removing dust, debris, and construction residue so your newly built or renovated space is move-in ready.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Post Renovation Cleaning</h3>
+          <p>Detailed clean-up after paint jobs, tiling, or refurbishments — leaving every surface spotless.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Move In Cleaning</h3>
+          <p>Starting fresh in a new home? We ensure every corner is sanitised and welcoming before you settle in.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📅</div>
+          <h3>Routine Cleaning</h3>
+          <p>Scheduled weekly or bi-weekly visits to keep your home consistently clean and healthy all year round.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">👕</div>
+          <h3>Laundry Services</h3>
+          <p>Fresh, neatly folded laundry handled with care — we treat your clothes as if they were our own.</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 36px;">
+        <button class="btn btn-primary" onclick="showPage('services')">See Full Service Details →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section>
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <span class="section-label">Why Choose Us</span>
+          <h2 class="section-title">Cleaning Done Right, Every Time</h2>
+          <ul class="why-list">
+            <li class="why-item">
+              <div class="why-num">01</div>
+              <div>
+                <h4>Vetted & Professional Staff</h4>
+                <p>All our cleaners are background-checked, trained, and uniformed — people you can trust in your space.</p>
+              </div>
+            </li>
+            <li class="why-item">
+              <div class="why-num">02</div>
+              <div>
+                <h4>Eco-Safe Cleaning Products</h4>
+                <p>We use non-toxic, family and pet-friendly products that are safe for your home and the environment.</p>
+              </div>
+            </li>
+            <li class="why-item">
+              <div class="why-num">03</div>
+              <div>
+                <h4>Flexible Scheduling</h4>
+                <p>Book when it suits you — early morning, weekends, or evenings. We work around your schedule.</p>
+              </div>
+            </li>
+            <li class="why-item">
+              <div class="why-num">04</div>
+              <div>
+                <h4>Student Friendly Packages</h4>
+                <p>Special weekly cleaning discounts for students. Clean living made affordable — no compromise on quality.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="why-visual">
+          <div class="why-visual-title">What's Always Included</div>
+          <div class="highlight-row"><span>Detailed room-by-room checklist</span> <span class="check">✓</span></div>
+          <div class="highlight-row"><span>Safe, non-toxic cleaning supplies</span> <span class="check">✓</span></div>
+          <div class="highlight-row"><span>Trained & uniformed cleaners</span> <span class="check">✓</span></div>
+          <div class="highlight-row"><span>Satisfaction follow-up</span> <span class="check">✓</span></div>
+          <div class="highlight-row"><span>Flexible rescheduling</span> <span class="check">✓</span></div>
+          <div style="margin-top: 24px;">
+            <button class="btn btn-white" onclick="goWhatsApp()">💬 Chat with Us on WhatsApp</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT PACKAGE BANNER -->
+  <section style="background: var(--off-white);">
+    <div class="container">
+      <div class="package-banner">
+        <div>
+          <h3>🎓 Student Friendly Package</h3>
+          <p>Weekly cleaning at a discount price. Designed for students who deserve a clean space without breaking the bank.</p>
+        </div>
+        <button class="btn btn-wa" onclick="goWhatsApp()">📲 Get Package Details</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" style="color:white; margin-bottom:12px;">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+          Sparkle Cleaning
+        </div>
+        <p>Professional cleaning you can trust — for a home you'll love coming back to. We clean with care.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li onclick="showPage('home')">Home</li>
+          <li onclick="showPage('services')">Services</li>
+          <li onclick="showPage('about')">About Us</li>
+          <li onclick="showPage('contact')">Contact</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>+234 811 424 6335</li>
+          <li>08116314842</li>
+          <li>Serving your neighborhood</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Sparkle Cleaning Service. All rights reserved.</span>
+      <span>We Clean With Care ♥ You Live With Comfort</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ SERVICES PAGE ═══════════════ -->
+<div class="page" id="page-services">
+
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <span class="section-label" style="background:rgba(255,255,255,0.15); color:#7eb8ff;">Our Services</span>
+      <h1 style="margin-top:12px;">Everything We Do For You</h1>
+      <p>Six comprehensive cleaning services tailored to every situation — from post-construction deep dives to gentle weekly routines.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div style="display:flex; flex-direction:column; gap:32px;">
+
+        <div class="service-card" style="padding: 36px; display:grid; grid-template-columns: 60px 1fr; gap: 24px; align-items:start;">
+          <div class="service-icon" style="margin:0; width:60px; height:60px; font-size:1.6rem;">✨</div>
+          <div>
+            <h3 style="font-size:1.25rem; margin-bottom:10px;">Deep Cleaning</h3>
+            <p style="font-size:0.92rem; color:var(--muted); line-height:1.75;">Our most comprehensive clean — ideal for homes that haven't been professionally cleaned in a while. We scrub, sanitise, and detail every corner of your home including behind appliances, inside cabinets, grout lines, ceiling fans, and more. Perfect for seasonal refreshes, pre-event prep, or before settling into a new rhythm.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="goWhatsApp()">Book Deep Cleaning</button>
+          </div>
+        </div>
+
+        <div class="service-card" style="padding: 36px; display:grid; grid-template-columns: 60px 1fr; gap: 24px; align-items:start;">
+          <div class="service-icon" style="margin:0; width:60px; height:60px; font-size:1.6rem;">🏗️</div>
+          <div>
+            <h3 style="font-size:1.25rem; margin-bottom:10px;">Post Construction Cleaning</h3>
+            <p style="font-size:0.92rem; color:var(--muted); line-height:1.75;">Construction leaves behind concrete dust, paint splatters, wood chips, and debris — we handle all of it. Our team uses specialised equipment and techniques to transform a newly built structure into a clean, safe, and habitable space. Ideal for both residential and commercial builds.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="goWhatsApp()">Book Post-Construction Clean</button>
+          </div>
+        </div>
+
+        <div class="service-card" style="padding: 36px; display:grid; grid-template-columns: 60px 1fr; gap: 24px; align-items:start;">
+          <div class="service-icon" style="margin:0; width:60px; height:60px; font-size:1.6rem;">🎨</div>
+          <div>
+            <h3 style="font-size:1.25rem; margin-bottom:10px;">Post Renovation Cleaning</h3>
+            <p style="font-size:0.92rem; color:var(--muted); line-height:1.75;">Renovation work — tiling, painting, plastering — leaves a layer of mess that's hard to clean on your own. We come in after the contractors leave and make your renovated space shine. Every surface is wiped down, every speck of dust removed, and the space is left looking like a showroom.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="goWhatsApp()">Book Post-Renovation Clean</button>
+          </div>
+        </div>
+
+        <div class="service-card" style="padding: 36px; display:grid; grid-template-columns: 60px 1fr; gap: 24px; align-items:start;">
+          <div class="service-icon" style="margin:0; width:60px; height:60px; font-size:1.6rem;">🏠</div>
+          <div>
+            <h3 style="font-size:1.25rem; margin-bottom:10px;">Move In Cleaning</h3>
+            <p style="font-size:0.92rem; color:var(--muted); line-height:1.75;">Moving into a new space should feel exciting, not stressful. We deep clean your new home before your belongings arrive so you can start fresh in a spotless environment. Covers all rooms, bathrooms, kitchen, and storage areas — sanitised and ready for you to call it home.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="goWhatsApp()">Book Move-In Clean</button>
+          </div>
+        </div>
+
+        <div class="service-card" style="padding: 36px; display:grid; grid-template-columns: 60px 1fr; gap: 24px; align-items:start;">
+          <div class="service-icon" style="margin:0; width:60px; height:60px; font-size:1.6rem;">📅</div>
+          <div>
+            <h3 style="font-size:1.25rem; margin-bottom:10px;">Routine Cleaning</h3>
+            <p style="font-size:0.92rem; color:var(--muted); line-height:1.75;">Stay on top of cleanliness without lifting a finger. Our routine cleaning visits keep your home consistently clean — dust-free, mopped, surfaces wiped, and bathrooms sanitised. Choose weekly, bi-weekly, or monthly visits. Special student-friendly weekly packages available at discounted rates.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="goWhatsApp()">Book Routine Cleaning</button>
+          </div>
+        </div>
+
+        <div class="service-card" style="padding: 36px; display:grid; grid-template-columns: 60px 1fr; gap: 24px; align-items:start;">
+          <div class="service-icon" style="margin:0; width:60px; height:60px; font-size:1.6rem;">👕</div>
+          <div>
+            <h3 style="font-size:1.25rem; margin-bottom:10px;">Laundry Services</h3>
+            <p style="font-size:0.92rem; color:var(--muted); line-height:1.75;">From bedsheets to delicates, we handle your laundry with care. Clothes are washed, dried, and neatly folded (or ironed on request). We treat every fabric carefully, using the right products for each type. Drop off your laundry or combine with a cleaning appointment for convenience.</p>
+            <button class="btn btn-primary" style="margin-top:20px;" onclick="goWhatsApp()">Book Laundry Service</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--navy); color:white; text-align:center;">
+    <div class="container" style="max-width: 620px;">
+      <h2 style="color:white; margin-bottom:16px;">Not sure which service you need?</h2>
+      <p style="color:rgba(255,255,255,0.75); margin-bottom:28px; line-height:1.7;">Just send us a message and describe your space. We'll recommend the right service and give you a quote — no obligation.</p>
+      <button class="btn btn-wa" onclick="goWhatsApp()">💬 Chat Us on WhatsApp</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" style="color:white; margin-bottom:12px;">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+          Sparkle Cleaning
+        </div>
+        <p>Professional cleaning you can trust — for a home you'll love coming back to.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li>Deep Cleaning</li>
+          <li>Post Construction</li>
+          <li>Post Renovation</li>
+          <li>Move In Cleaning</li>
+          <li>Routine Cleaning</li>
+          <li>Laundry Services</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>+234 811 424 6335</li>
+          <li>08116314842</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Sparkle Cleaning Service. All rights reserved.</span>
+      <span>We Clean With Care ♥ You Live With Comfort</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ ABOUT PAGE ═══════════════ -->
+<div class="page" id="page-about">
+
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <span class="section-label" style="background:rgba(255,255,255,0.15); color:#7eb8ff;">About Us</span>
+      <h1 style="margin-top:12px;">We Clean With Care</h1>
+      <p>Sparkle Cleaning Service was founded on one simple belief — every home deserves to shine. We bring professional standards to your doorstep with warmth and reliability.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title">Born From a Passion for Clean Living</h2>
+          <p style="font-size:0.95rem; color:var(--muted); line-height:1.8; margin-bottom:16px;">
+            Sparkle Cleaning Service started as a neighborhood initiative — a small team with mops, gloves, and a genuine love for clean spaces. Word spread quickly. Clients saw the difference a truly thorough clean makes: not just visually, but how it feels to live and breathe in a fresh environment.
+          </p>
+          <p style="font-size:0.95rem; color:var(--muted); line-height:1.8; margin-bottom:16px;">
+            Today, we've expanded our team and services while holding tightly to our founding values: trustworthiness, thoroughness, and genuine care for every client we serve.
+          </p>
+          <p style="font-size:0.95rem; color:var(--muted); line-height:1.8;">
+            From deep cleans to post-construction overhauls, from student accommodations to family homes — we show up ready to make it sparkle.
+          </p>
+        </div>
+        <div class="why-visual">
+          <div class="why-visual-title">Our Core Values</div>
+          <div class="highlight-row"><span>Trust & Integrity</span> <span class="check">✦</span></div>
+          <div class="highlight-row"><span>Attention to Detail</span> <span class="check">✦</span></div>
+          <div class="highlight-row"><span>Client-First Approach</span> <span class="check">✦</span></div>
+          <div class="highlight-row"><span>Environmental Responsibility</span> <span class="check">✦</span></div>
+          <div class="highlight-row"><span>Consistent Excellence</span> <span class="check">✦</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--off-white);">
+    <div class="container">
+      <div class="section-head" style="text-align:center;">
+        <span class="section-label">What We Stand For</span>
+        <h2 class="section-title">Our Commitments to You</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-emoji">🛡️</div>
+          <h4>Trusted & Reliable</h4>
+          <p>We show up on time, every time. Your trust is the foundation everything we do is built on.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-emoji">🔍</div>
+          <h4>Thorough & Detail Oriented</h4>
+          <p>We don't just clean the obvious — we get into every corner, crevice, and surface.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-emoji">🌿</div>
+          <h4>Safe Products</h4>
+          <p>All products used are non-toxic, eco-conscious, and safe for children and pets.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-emoji">📍</div>
+          <h4>Community Rooted</h4>
+          <p>We serve your neighborhood with care because we see ourselves as part of it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="team-band">
+        <h3>Ready to Experience the Sparkle Difference?</h3>
+        <p>Join hundreds of happy clients who trust us to keep their homes and offices clean. Book your first session today — we guarantee you'll feel the difference.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <button class="btn btn-white" onclick="showPage('contact')">📅 Book a Service</button>
+          <button class="btn btn-wa" onclick="goWhatsApp()">💬 WhatsApp Us</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" style="color:white; margin-bottom:12px;">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+          Sparkle Cleaning
+        </div>
+        <p>Professional cleaning you can trust — for a home you'll love coming back to.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li onclick="showPage('home')">Home</li>
+          <li onclick="showPage('services')">Services</li>
+          <li onclick="showPage('about')">About Us</li>
+          <li onclick="showPage('contact')">Contact</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>+234 811 424 6335</li>
+          <li>08116314842</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Sparkle Cleaning Service. All rights reserved.</span>
+      <span>We Clean With Care ♥ You Live With Comfort</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ CONTACT PAGE ═══════════════ -->
+<div class="page" id="page-contact">
+
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <span class="section-label" style="background:rgba(255,255,255,0.15); color:#7eb8ff;">Contact Us</span>
+      <h1 style="margin-top:12px;">Book Your Cleaning Today</h1>
+      <p>Ready for a sparkling clean home? Fill the form below or reach us directly on WhatsApp — we'll get back to you fast.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Get In Touch</h3>
+          <p>We're always happy to hear from you. Whether you have questions, want a quote, or are ready to book — we're a message away.</p>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📞</div>
+            <div>
+              <h5>Phone</h5>
+              <p>+234 811 424 6335</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📱</div>
+            <div>
+              <h5>Alternative</h5>
+              <p>08116314842</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📍</div>
+            <div>
+              <h5>Coverage</h5>
+              <p>Serving your neighborhood with care</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">⏰</div>
+            <div>
+              <h5>Working Hours</h5>
+              <p>Monday – Saturday: 7am – 7pm</p>
+            </div>
+          </div>
+
+          <div class="wa-card" onclick="goWhatsApp()" style="cursor:pointer;">
+            <div class="wa-icon">💬</div>
+            <div>
+              <h5>Chat on WhatsApp</h5>
+              <p>Fastest way to reach us — tap to open chat</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Send Us a Message</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="John" />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Doe" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+234 800 000 0000" />
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service">
+              <option value="">Select a service...</option>
+              <option>Deep Cleaning</option>
+              <option>Post Construction Cleaning</option>
+              <option>Post Renovation Cleaning</option>
+              <option>Move In Cleaning</option>
+              <option>Routine Cleaning</option>
+              <option>Laundry Services</option>
+              <option>Not Sure – Help Me Choose</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="address">Your Address / Area</label>
+            <input type="text" id="address" placeholder="Street, estate or area name" />
+          </div>
+          <div class="form-group">
+            <label for="message">Additional Details</label>
+            <textarea id="message" placeholder="Tell us about your space, preferred date/time, or any special requests..."></textarea>
+          </div>
+          <button class="form-submit" onclick="submitToWhatsApp()">📲 Send via WhatsApp</button>
+          <p style="font-size:0.78rem; color:var(--muted); text-align:center; margin-top:12px;">
+            This will open WhatsApp with your details pre-filled for quick booking.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" style="color:white; margin-bottom:12px;">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+          Sparkle Cleaning
+        </div>
+        <p>Professional cleaning you can trust — for a home you'll love coming back to.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li onclick="showPage('home')">Home</li>
+          <li onclick="showPage('services')">Services</li>
+          <li onclick="showPage('about')">About Us</li>
+          <li onclick="showPage('contact')">Contact</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>+234 811 424 6335</li>
+          <li>08116314842</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Sparkle Cleaning Service. All rights reserved.</span>
+      <span>We Clean With Care ♥ You Live With Comfort</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
+
+    document.querySelectorAll('.drawer-nav a').forEach(a => a.classList.remove('active'));
+    const drawerEl = document.getElementById('drawer-' + id);
+    if (drawerEl) drawerEl.classList.add('active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleMenu() {
+    const drawer = document.getElementById('sideDrawer');
+    const overlay = document.getElementById('drawerOverlay');
+    const hamburger = document.getElementById('hamburger');
+    const isOpen = drawer.classList.contains('open');
+    if (isOpen) {
+      closeDrawer();
+    } else {
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      hamburger.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeDrawer() {
+    document.getElementById('sideDrawer').classList.remove('open');
+    document.getElementById('drawerOverlay').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function goWhatsApp() {
+    window.open('https://wa.me/2348114246335?text=Hello%20Sparkle%20Cleaning%2C%20I%20would%20like%20to%20book%20a%20cleaning%20service.', '_blank');
+  }
+
+  function submitToWhatsApp() {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const address = document.getElementById('address').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const name = [fname, lname].filter(Boolean).join(' ') || 'A client';
+
+    let text = `Hello Sparkle Cleaning Service! 👋\n\nI'd like to book a cleaning.\n\n`;
+    if (name) text += `*Name:* ${name}\n`;
+    if (phone) text += `*Phone:* ${phone}\n`;
+    if (service) text += `*Service:* ${service}\n`;
+    if (address) text += `*Location:* ${address}\n`;
+    if (message) text += `\n*Details:* ${message}`;
+
+    const url = 'https://wa.me/2348114246335?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
